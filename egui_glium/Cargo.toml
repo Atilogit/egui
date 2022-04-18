@@ -52,7 +52,7 @@ egui-winit = { version = "0.17.0", path = "../egui-winit", default-features = fa
 
 ahash = "0.7"
 bytemuck = "1.7"
-glium = "0.31"
+glium = { git = "https://github.com/Atilogit/glium" }
 
 [dev-dependencies]
 image = { version = "0.24", default-features = false, features = ["png"] }
