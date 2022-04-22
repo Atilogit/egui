@@ -41,12 +41,12 @@ screen_reader = ["tts"]
 
 
 [dependencies]
-egui = { version = "0.17.0", path = "../egui", default-features = false, features = [
+egui = { version = "0.17.0", git = "https://github.com/Atilogit/egui", default-features = false, features = [
   "bytemuck",
   "tracing",
 ] }
-egui_glow = { version = "0.17.0", path = "../egui_glow", default-features = false }
-epi = { version = "0.17.0", path = "../epi" }
+egui_glow = { version = "0.17.0", git = "https://github.com/Atilogit/egui", default-features = false }
+epi = { version = "0.17.0", git = "https://github.com/Atilogit/egui" }
 
 bytemuck = "1.7"
 js-sys = "0.3"
