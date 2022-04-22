@@ -57,7 +57,7 @@ winit = { git = "https://github.com/Kaiser1989/winit" }
 # Optional:
 epi = { version = "0.17.0", path = "../epi", optional = true }
 
-arboard = { git = "https://github.com/Atilogit/arboard", optional = true, default-features = false }
+arboard = { git = "https://github.com/Atilogit/arboard", optional = true, default-features = false, features = ["image-data"] }
 dark-light = { version = "0.2.1", optional = true }
 glow = { version = "0.11", optional = true }
 puffin = { version = "0.13", optional = true }

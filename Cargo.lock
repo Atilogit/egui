@@ -99,15 +99,15 @@ dependencies = [
 [[package]]
 name = "arboard"
 version = "2.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6045ca509e4abacde2b884ac4618a51d0c017b5d85a3ee84a7226eb33b3154a9"
+source = "git+https://github.com/Atilogit/arboard#cac9555059b5c9d844fc031d04733c53d6fadde0"
 dependencies = [
  "clipboard-win",
+ "core-graphics 0.22.3",
+ "image 0.23.14",
  "log",
  "objc",
  "objc-foundation",
  "objc_id",
- "once_cell",
  "parking_lot 0.12.0",
  "thiserror",
  "winapi",
@@ -932,6 +932,16 @@ checksum = "7046468a81e6a002061c01e6a7c83139daf91b11c30e66795b13217c2d885c8b"
 
 [[package]]
 name = "deflate"
+version = "0.8.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "73770f8e1fe7d64df17ca66ad28994a0a623ea497fa69486e14984e715c5d174"
+dependencies = [
+ "adler32",
+ "byteorder",
+]
+
+[[package]]
+name = "deflate"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c86f7e25f518f4b81808a2cf1c50996a61f5c2eb394b2393bd87f2a4780a432f"
@@ -1034,7 +1044,7 @@ dependencies = [
  "eframe",
  "egui_extras",
  "ehttp",
- "image",
+ "image 0.24.1",
  "poll-promise",
 ]
 
@@ -1109,7 +1119,7 @@ dependencies = [
  "tracing",
  "tts",
  "webbrowser",
- "winit",
+ "winit 0.26.0",
 ]
 
 [[package]]
@@ -1134,7 +1144,7 @@ dependencies = [
  "ehttp",
  "enum-map",
  "epi",
- "image",
+ "image 0.24.1",
  "poll-promise",
  "serde",
  "syntect",
@@ -1148,7 +1158,7 @@ version = "0.17.0"
 dependencies = [
  "chrono",
  "egui",
- "image",
+ "image 0.24.1",
  "resvg",
  "serde",
  "tiny-skia",
@@ -1165,7 +1175,7 @@ dependencies = [
  "egui",
  "egui-winit",
  "glium",
- "image",
+ "image 0.24.1",
 ]
 
 [[package]]
@@ -1177,7 +1187,7 @@ dependencies = [
  "egui-winit",
  "epi",
  "glow",
- "glutin",
+ "glutin 0.28.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "memoffset",
  "puffin",
  "tracing",
@@ -1585,13 +1595,12 @@ dependencies = [
 [[package]]
 name = "glium"
 version = "0.31.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0ab4f09b43d8ee427a700cb9ed3b20e0e858d62a509edded1a98ca5707d68e19"
+source = "git+https://github.com/Atilogit/glium#0b3c7fa976e7c39e1f17841d827a46752e89d96d"
 dependencies = [
  "backtrace",
  "fnv",
  "gl_generator",
- "glutin",
+ "glutin 0.28.0 (git+https://github.com/Atilogit/glutin)",
  "lazy_static",
  "memoffset",
  "smallvec",
@@ -1636,11 +1645,11 @@ dependencies = [
  "cgl",
  "cocoa",
  "core-foundation 0.9.3",
- "glutin_egl_sys",
- "glutin_emscripten_sys",
- "glutin_gles2_sys",
- "glutin_glx_sys",
- "glutin_wgl_sys",
+ "glutin_egl_sys 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
+ "glutin_emscripten_sys 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "glutin_gles2_sys 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
+ "glutin_glx_sys 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "glutin_wgl_sys 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "lazy_static",
  "libloading",
  "log",
@@ -1650,7 +1659,33 @@ dependencies = [
  "wayland-client",
  "wayland-egl",
  "winapi",
- "winit",
+ "winit 0.26.1",
+]
+
+[[package]]
+name = "glutin"
+version = "0.28.0"
+source = "git+https://github.com/Atilogit/glutin#4d9abc95ca4beab89cc820c3243746113cc8f478"
+dependencies = [
+ "cgl",
+ "cocoa",
+ "core-foundation 0.9.3",
+ "glutin_egl_sys 0.1.5 (git+https://github.com/Atilogit/glutin)",
+ "glutin_emscripten_sys 0.1.1 (git+https://github.com/Atilogit/glutin)",
+ "glutin_gles2_sys 0.1.5 (git+https://github.com/Atilogit/glutin)",
+ "glutin_glx_sys 0.1.7 (git+https://github.com/Atilogit/glutin)",
+ "glutin_wgl_sys 0.1.5 (git+https://github.com/Atilogit/glutin)",
+ "lazy_static",
+ "libloading",
+ "log",
+ "ndk-glue 0.5.1",
+ "objc",
+ "osmesa-sys",
+ "parking_lot 0.11.2",
+ "wayland-client",
+ "wayland-egl",
+ "winapi",
+ "winit 0.26.0",
 ]
 
 [[package]]
@@ -1664,16 +1699,39 @@ dependencies = [
 ]
 
 [[package]]
+name = "glutin_egl_sys"
+version = "0.1.5"
+source = "git+https://github.com/Atilogit/glutin#4d9abc95ca4beab89cc820c3243746113cc8f478"
+dependencies = [
+ "gl_generator",
+ "winapi",
+]
+
+[[package]]
 name = "glutin_emscripten_sys"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "80de4146df76e8a6c32b03007bc764ff3249dcaeb4f675d68a06caf1bac363f1"
 
 [[package]]
+name = "glutin_emscripten_sys"
+version = "0.1.1"
+source = "git+https://github.com/Atilogit/glutin#4d9abc95ca4beab89cc820c3243746113cc8f478"
+
+[[package]]
 name = "glutin_gles2_sys"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e8094e708b730a7c8a1954f4f8a31880af00eb8a1c5b5bf85d28a0a3c6d69103"
+dependencies = [
+ "gl_generator",
+ "objc",
+]
+
+[[package]]
+name = "glutin_gles2_sys"
+version = "0.1.5"
+source = "git+https://github.com/Atilogit/glutin#4d9abc95ca4beab89cc820c3243746113cc8f478"
 dependencies = [
  "gl_generator",
  "objc",
@@ -1690,10 +1748,27 @@ dependencies = [
 ]
 
 [[package]]
+name = "glutin_glx_sys"
+version = "0.1.7"
+source = "git+https://github.com/Atilogit/glutin#4d9abc95ca4beab89cc820c3243746113cc8f478"
+dependencies = [
+ "gl_generator",
+ "x11-dl",
+]
+
+[[package]]
 name = "glutin_wgl_sys"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3da5951a1569dbab865c6f2a863efafff193a93caf05538d193e9e3816d21696"
+dependencies = [
+ "gl_generator",
+]
+
+[[package]]
+name = "glutin_wgl_sys"
+version = "0.1.5"
+source = "git+https://github.com/Atilogit/glutin#4d9abc95ca4beab89cc820c3243746113cc8f478"
 dependencies = [
  "gl_generator",
 ]
@@ -1806,6 +1881,22 @@ dependencies = [
 
 [[package]]
 name = "image"
+version = "0.23.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "24ffcb7e7244a9bf19d35bf2883b9c080c4ced3c07a9895572178cdb8f13f6a1"
+dependencies = [
+ "bytemuck",
+ "byteorder",
+ "color_quant",
+ "num-iter",
+ "num-rational 0.3.2",
+ "num-traits",
+ "png 0.16.8",
+ "tiff",
+]
+
+[[package]]
+name = "image"
 version = "0.24.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "db207d030ae38f1eb6f240d5a1c1c88ff422aa005d10f8c6c6fc5e75286ab30e"
@@ -1813,11 +1904,11 @@ dependencies = [
  "bytemuck",
  "byteorder",
  "color_quant",
- "jpeg-decoder",
+ "jpeg-decoder 0.2.2",
  "num-iter",
- "num-rational",
+ "num-rational 0.4.0",
  "num-traits",
- "png",
+ "png 0.17.4",
 ]
 
 [[package]]
@@ -1891,6 +1982,12 @@ checksum = "af25a77299a7f711a01975c35a6a424eb6862092cc2d6c72c4ed6cbc56dfc1fa"
 dependencies = [
  "libc",
 ]
+
+[[package]]
+name = "jpeg-decoder"
+version = "0.1.22"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "229d53d58899083193af11e15917b5640cd40b29ff475a1fe4ef725deb02d0f2"
 
 [[package]]
 name = "jpeg-decoder"
@@ -2042,6 +2139,15 @@ name = "minimal-lexical"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "68354c5c6bd36d73ff3feceb05efa59b6acb7626617f4962be322a825e61f79a"
+
+[[package]]
+name = "miniz_oxide"
+version = "0.3.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "791daaae1ed6889560f8c4359194f56648355540573244a5448a83ba1ecc7435"
+dependencies = [
+ "adler32",
+]
 
 [[package]]
 name = "miniz_oxide"
@@ -2247,6 +2353,17 @@ name = "num-iter"
 version = "0.1.42"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b2021c8337a54d21aca0d59a92577a029af9431cb59b909b03252b9c164fad59"
+dependencies = [
+ "autocfg",
+ "num-integer",
+ "num-traits",
+]
+
+[[package]]
+name = "num-rational"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "12ac428b1cb17fce6f731001d307d351ec70a6d202fc2e60f7d4c5e42d8f4f07"
 dependencies = [
  "autocfg",
  "num-integer",
@@ -2558,13 +2675,25 @@ dependencies = [
 
 [[package]]
 name = "png"
+version = "0.16.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3c3287920cb847dee3de33d301c463fba14dda99db24214ddf93f83d3021f4c6"
+dependencies = [
+ "bitflags",
+ "crc32fast",
+ "deflate 0.8.6",
+ "miniz_oxide 0.3.7",
+]
+
+[[package]]
+name = "png"
 version = "0.17.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "02cd7d51cea7e2fa6bbcb8af5fbcad15b871451bfc2d20ed72dff2f4ae072a84"
 dependencies = [
  "bitflags",
  "crc32fast",
- "deflate",
+ "deflate 1.0.0",
  "miniz_oxide 0.5.1",
 ]
 
@@ -2780,10 +2909,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2e702d1e8e00a3a0717b96244cba840f34f542d8f23097c8903266c4e2975658"
 dependencies = [
  "gif",
- "jpeg-decoder",
+ "jpeg-decoder 0.2.2",
  "log",
  "pico-args",
- "png",
+ "png 0.17.4",
  "rgb",
  "svgfilters",
  "svgtypes",
@@ -2797,7 +2926,7 @@ version = "0.1.0"
 dependencies = [
  "eframe",
  "egui_extras",
- "image",
+ "image 0.24.1",
 ]
 
 [[package]]
@@ -3360,6 +3489,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "tiff"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9a53f4706d65497df0c4349241deddf35f84cee19c87ed86ea8ca590f4464437"
+dependencies = [
+ "jpeg-decoder 0.1.22",
+ "miniz_oxide 0.4.4",
+ "weezl",
+]
+
+[[package]]
 name = "time"
 version = "0.1.43"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3390,7 +3530,7 @@ dependencies = [
  "arrayvec 0.5.2",
  "bytemuck",
  "cfg-if 1.0.0",
- "png",
+ "png 0.17.4",
  "safe_arch",
 ]
 
@@ -4027,6 +4167,39 @@ name = "windows_x86_64_msvc"
 version = "0.32.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "504a2476202769977a040c6364301a3f65d0cc9e3fb08600b2bda150a0488316"
+
+[[package]]
+name = "winit"
+version = "0.26.0"
+source = "git+https://github.com/Kaiser1989/winit#7ff2a42aa9291e6909ec784b7cf797722d313578"
+dependencies = [
+ "bitflags",
+ "block",
+ "cocoa",
+ "core-foundation 0.9.3",
+ "core-graphics 0.22.3",
+ "core-video-sys",
+ "dispatch",
+ "instant",
+ "lazy_static",
+ "libc",
+ "log",
+ "mio",
+ "ndk 0.5.0",
+ "ndk-glue 0.5.1",
+ "ndk-sys 0.2.2",
+ "objc",
+ "parking_lot 0.11.2",
+ "percent-encoding",
+ "raw-window-handle",
+ "smithay-client-toolkit",
+ "wasm-bindgen",
+ "wayland-client",
+ "wayland-protocols",
+ "web-sys",
+ "winapi",
+ "x11-dl",
+]
 
 [[package]]
 name = "winit"

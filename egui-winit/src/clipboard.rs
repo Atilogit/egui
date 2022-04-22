@@ -1,3 +1,5 @@
+use egui::{ColorImage, ImageData};
+
 /// Handles interfacing with the OS clipboard.
 ///
 /// If the "clipboard" feature is off, or we cannot connect to the OS clipboard,
@@ -22,6 +24,23 @@ impl Default for Clipboard {
 }
 
 impl Clipboard {
+    pub fn get_image(&mut self) -> Option<ImageData> {
+        #[cfg(feature = "arboard")]
+        if let Some(clipboard) = &mut self.arboard {
+            match clipboard.get_image() {
+                Ok(img) => {
+                    return Some(ImageData::Color(ColorImage::from_rgba_unmultiplied(
+                        [img.width, img.height],
+                        &img.bytes,
+                    )))
+                }
+                Err(err) => tracing::error!("Paste error: {}", err),
+            };
+        }
+
+        None
+    }
+
     pub fn get(&mut self) -> Option<String> {
         #[cfg(feature = "arboard")]
         if let Some(clipboard) = &mut self.arboard {
