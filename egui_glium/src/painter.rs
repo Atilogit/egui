@@ -73,6 +73,7 @@ impl Painter {
         clipped_primitives: &[egui::ClippedPrimitive],
         textures_delta: &egui::TexturesDelta,
     ) {
+        egui_winit::profile_function!();
         for (id, image_delta) in &textures_delta.set {
             self.set_texture(display, *id, image_delta);
         }
@@ -94,6 +95,7 @@ impl Painter {
         pixels_per_point: f32,
         clipped_primitives: &[egui::ClippedPrimitive],
     ) {
+        egui_winit::profile_function!();
         for egui::ClippedPrimitive {
             clip_rect,
             primitive,
@@ -119,6 +121,7 @@ impl Painter {
         clip_rect: &Rect,
         mesh: &Mesh,
     ) {
+        egui_winit::profile_function!();
         debug_assert!(mesh.is_valid());
 
         let vertex_buffer = {

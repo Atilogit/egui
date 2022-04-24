@@ -77,6 +77,7 @@ impl EguiGlium {
 
     /// Paint the results of the last call to [`Self::run`].
     pub fn paint<T: glium::Surface>(&mut self, display: &glium::Display, target: &mut T) {
+        egui_winit::profile_function!();
         let shapes = std::mem::take(&mut self.shapes);
         let textures_delta = std::mem::take(&mut self.textures_delta);
         let clipped_primitives = self.egui_ctx.tessellate(shapes);
