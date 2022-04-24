@@ -1127,7 +1127,7 @@ dependencies = [
  "epi 0.17.0",
  "glow",
  "instant",
- "puffin",
+ "puffin 0.13.1 (git+https://github.com/Atilogit/puffin)",
  "serde",
  "tracing",
  "tts",
@@ -1146,7 +1146,7 @@ dependencies = [
  "epi 0.17.0 (git+https://github.com/Atilogit/egui)",
  "glow",
  "instant",
- "puffin",
+ "puffin 0.13.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde",
  "tracing",
  "tts",
@@ -1221,7 +1221,7 @@ dependencies = [
  "glow",
  "glutin 0.28.0 (git+https://github.com/Atilogit/glutin)",
  "memoffset",
- "puffin",
+ "puffin 0.13.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "tracing",
  "wasm-bindgen",
  "web-sys",
@@ -1239,7 +1239,7 @@ dependencies = [
  "glow",
  "glutin 0.28.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "memoffset",
- "puffin",
+ "puffin 0.13.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "tracing",
  "wasm-bindgen",
  "web-sys",
@@ -2866,6 +2866,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "puffin"
+version = "0.13.1"
+source = "git+https://github.com/Atilogit/puffin#ff4448f9f5f9f6f2a9f6df1260df4e0f23dd6411"
+dependencies = [
+ "byteorder",
+ "once_cell",
+]
+
+[[package]]
 name = "puffin_http"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2874,7 +2883,7 @@ dependencies = [
  "anyhow",
  "crossbeam-channel",
  "log",
- "puffin",
+ "puffin 0.13.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -2882,7 +2891,7 @@ name = "puffin_profiler"
 version = "0.1.0"
 dependencies = [
  "eframe",
- "puffin",
+ "puffin 0.13.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "puffin_http",
 ]
 
