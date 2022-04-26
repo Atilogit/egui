@@ -10,14 +10,14 @@ use crate::{
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct PenTouchInfo {
     /// Current position of this touch, in device coordinates (not necessarily screen position)
-    pos: Pos2,
+    pub pos: Pos2,
     /// Current force of the touch. A value in the interval [0.0 .. 1.0]
     ///
     /// Note that a value of 0.0 either indicates a very light touch, or it means that the device
     /// is not capable of measuring the touch force.
-    force: f32,
+    pub force: f32,
     /// If pen is hovering, touching or erasing
-    pen_state: PenState,
+    pub pen_state: PenState,
 }
 
 /// All you probably need to know about a multi-touch gesture.
