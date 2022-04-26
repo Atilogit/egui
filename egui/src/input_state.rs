@@ -6,9 +6,8 @@ use std::collections::{BTreeMap, HashSet};
 
 pub use crate::data::input::Key;
 pub use touch_state::MultiTouchInfo;
+pub use touch_state::PenTouchInfo;
 use touch_state::TouchState;
-
-use self::touch_state::PenTouchInfo;
 
 /// If the pointer moves more than this, it won't become a click (but it is still a drag)
 const MAX_CLICK_DIST: f32 = 6.0; // TODO: move to settings
