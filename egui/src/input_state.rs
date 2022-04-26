@@ -8,6 +8,8 @@ pub use crate::data::input::Key;
 pub use touch_state::MultiTouchInfo;
 use touch_state::TouchState;
 
+use self::touch_state::PenTouchInfo;
+
 /// If the pointer moves more than this, it won't become a click (but it is still a drag)
 const MAX_CLICK_DIST: f32 = 6.0; // TODO: move to settings
 
@@ -314,6 +316,10 @@ impl InputState {
         } else {
             None
         }
+    }
+
+    pub fn pen_touch(&self) -> Option<PenTouchInfo> {
+        self.touch_states.values().find_map(|t| t.pen_info())
     }
 
     /// True if there currently are any fingers touching egui.

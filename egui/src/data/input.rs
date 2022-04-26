@@ -228,6 +228,8 @@ pub enum Event {
         id: TouchId,
         /// One of: start move end cancel.
         phase: TouchPhase,
+        /// State of the pen if touch event was caused by pen
+        pen_state: Option<PenState>,
         /// Position of the touch (or where the touch was last detected)
         pos: Pos2,
         /// Describes how hard the touch device was pressed. May always be `0` if the platform does
@@ -235,6 +237,15 @@ pub enum Event {
         /// The value is in the range from 0.0 (no pressure) to 1.0 (maximum pressure).
         force: f32,
     },
+}
+
+/// Describes the kind of pen event
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
+pub enum PenState {
+    Tip,
+    Eraser,
+    Hover,
 }
 
 /// Mouse button (or similar for touch input)

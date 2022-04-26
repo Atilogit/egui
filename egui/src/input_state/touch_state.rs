@@ -3,8 +3,22 @@ use std::{collections::BTreeMap, fmt::Debug};
 use crate::{
     data::input::TouchDeviceId,
     emath::{normalized_angle, Pos2, Vec2},
-    Event, RawInput, TouchId, TouchPhase,
+    Event, PenState, RawInput, TouchId, TouchPhase,
 };
+
+/// Information about the current state of a pen touch
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct PenTouchInfo {
+    /// Current position of this touch, in device coordinates (not necessarily screen position)
+    pos: Pos2,
+    /// Current force of the touch. A value in the interval [0.0 .. 1.0]
+    ///
+    /// Note that a value of 0.0 either indicates a very light touch, or it means that the device
+    /// is not capable of measuring the touch force.
+    force: f32,
+    /// If pen is hovering, touching or erasing
+    pen_state: PenState,
+}
 
 /// All you probably need to know about a multi-touch gesture.
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -112,6 +126,8 @@ struct ActiveTouch {
     /// Note that a value of 0.0 either indicates a very light touch, or it means that the device
     /// is not capable of measuring the touch force.
     force: f32,
+    /// `Some(..)` if touch is caused by pen. Describes pen state
+    pen_state: Option<PenState>,
 }
 
 impl TouchState {
@@ -131,17 +147,26 @@ impl TouchState {
                     device_id,
                     id,
                     phase,
+                    pen_state,
                     pos,
                     force,
                 } if device_id == self.device_id => match phase {
                     TouchPhase::Start => {
-                        self.active_touches.insert(id, ActiveTouch { pos, force });
+                        self.active_touches.insert(
+                            id,
+                            ActiveTouch {
+                                pos,
+                                force,
+                                pen_state,
+                            },
+                        );
                         added_or_removed_touches = true;
                     }
                     TouchPhase::Move => {
                         if let Some(touch) = self.active_touches.get_mut(&id) {
                             touch.pos = pos;
                             touch.force = force;
+                            touch.pen_state = pen_state;
                         }
                     }
                     TouchPhase::End | TouchPhase::Cancel => {
@@ -167,6 +192,20 @@ impl TouchState {
 
     pub fn is_active(&self) -> bool {
         self.gesture_state.is_some()
+    }
+
+    pub fn pen_info(&self) -> Option<PenTouchInfo> {
+        self.active_touches.values().next().and_then(|touch| {
+            if let Some(pen_state) = touch.pen_state {
+                Some(PenTouchInfo {
+                    force: touch.force,
+                    pen_state,
+                    pos: touch.pos,
+                })
+            } else {
+                None
+            }
+        })
     }
 
     pub fn info(&self) -> Option<MultiTouchInfo> {

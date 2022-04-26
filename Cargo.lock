@@ -1132,7 +1132,7 @@ dependencies = [
  "tracing",
  "tts",
  "webbrowser",
- "winit 0.26.0",
+ "winit 0.26.0 (git+https://github.com/Atilogit/winit)",
 ]
 
 [[package]]
@@ -1151,7 +1151,7 @@ dependencies = [
  "tracing",
  "tts",
  "webbrowser",
- "winit 0.26.0",
+ "winit 0.26.0 (git+https://github.com/Kaiser1989/winit)",
 ]
 
 [[package]]
@@ -1791,7 +1791,7 @@ dependencies = [
  "wayland-client",
  "wayland-egl",
  "winapi",
- "winit 0.26.0",
+ "winit 0.26.0 (git+https://github.com/Kaiser1989/winit)",
 ]
 
 [[package]]
@@ -4282,6 +4282,39 @@ name = "windows_x86_64_msvc"
 version = "0.32.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "504a2476202769977a040c6364301a3f65d0cc9e3fb08600b2bda150a0488316"
+
+[[package]]
+name = "winit"
+version = "0.26.0"
+source = "git+https://github.com/Atilogit/winit#36ce443738c06db194ee28b4f809c1f3f477a339"
+dependencies = [
+ "bitflags",
+ "block",
+ "cocoa",
+ "core-foundation 0.9.3",
+ "core-graphics 0.22.3",
+ "core-video-sys",
+ "dispatch",
+ "instant",
+ "lazy_static",
+ "libc",
+ "log",
+ "mio",
+ "ndk 0.5.0",
+ "ndk-glue 0.5.1",
+ "ndk-sys 0.2.2",
+ "objc",
+ "parking_lot 0.11.2",
+ "percent-encoding",
+ "raw-window-handle",
+ "smithay-client-toolkit",
+ "wasm-bindgen",
+ "wayland-client",
+ "wayland-protocols",
+ "web-sys",
+ "winapi",
+ "x11-dl",
+]
 
 [[package]]
 name = "winit"

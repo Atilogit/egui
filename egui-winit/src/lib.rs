@@ -260,6 +260,7 @@ impl State {
                             device_id: egui::TouchDeviceId(0),
                             id: egui::TouchId(0),
                             phase: egui::TouchPhase::Start,
+                            pen_state: None,
                             pos,
                             force: 0.0,
                         });
@@ -272,6 +273,7 @@ impl State {
                             device_id: egui::TouchDeviceId(0),
                             id: egui::TouchId(0),
                             phase: egui::TouchPhase::End,
+                            pen_state: None,
                             pos,
                             force: 0.0,
                         });
@@ -298,6 +300,7 @@ impl State {
                     device_id: egui::TouchDeviceId(0),
                     id: egui::TouchId(0),
                     phase: egui::TouchPhase::Move,
+                    pen_state: None,
                     pos: pos_in_points,
                     force: 0.0,
                 });
@@ -320,6 +323,11 @@ impl State {
                 winit::event::TouchPhase::Ended => egui::TouchPhase::End,
                 winit::event::TouchPhase::Cancelled => egui::TouchPhase::Cancel,
             },
+            pen_state: touch.pen_flags.map(|f| match f {
+                winit::event::PenFlags::Tip => egui::PenState::Tip,
+                winit::event::PenFlags::Eraser => egui::PenState::Eraser,
+                winit::event::PenFlags::Hover => egui::PenState::Hover,
+            }),
             pos: egui::pos2(
                 touch.location.x as f32 / self.pixels_per_point(),
                 touch.location.y as f32 / self.pixels_per_point(),
